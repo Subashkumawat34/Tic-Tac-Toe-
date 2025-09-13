@@ -1,0 +1,21 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]   # change to your branch if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # (optional) run lint/build steps here if needed
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # auto-provided by GitHub
+          publish_dir: .   # set to "." when index.html is in repo root
